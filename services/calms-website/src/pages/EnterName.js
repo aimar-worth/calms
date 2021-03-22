@@ -40,12 +40,12 @@ const EnterNamePage = ({ history }) => {
         <div style={{ margin: '32px' }}>
             {loading ? <Loader /> : null}
             <Header user={user} />
-            <Form onFinish={handleSubmit}>
+            <Form onFinish={handleSubmit} id="form">
                 <Form.Item
                     name="username"
                     rules={[{ required: true, message: 'Please input your name!' }]}
                 >
-                    <Input type="text" value={name} onChange={handleNameChange} />
+                    <Input id="input" type="text" value={name} onChange={handleNameChange} />
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit">Ok</Button>

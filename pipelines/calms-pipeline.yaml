@@ -41,6 +41,11 @@ stages:
           #     path: "$(Build.SourcesDirectory)/$(websitePath)/node_modules"
           #     cacheHitVar: "CacheRestored"
 
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "15.x"
+            displayName: "Install nodejs"
+
           - script: |
               npm install
             displayName: Install dependencies
@@ -48,22 +53,19 @@ stages:
             # condition: ne(variables['CacheRestored'], 'true')
 
           - script: |
-              npm run test:ci
+              npm run cypress:run
             displayName: Run unit tests
             workingDirectory: $(websitePath)
             continueOnError: true
 
-          - script: |
-              ls -la $(Build.SourcesDirectory)/$(websitePath)
-            displayName: test
-
           - task: PublishTestResults@2
             displayName: "Publish Jest Unit Test Results"
             inputs:
-              testResultsFiles: "$(Build.SourcesDirectory)/$(websitePath)/junit.xml"
+              testResultsFormat: "JUnit"
+              testResultsFiles: "*.xml"
+              searchFolder: "$(Build.SourcesDirectory)/cypress/reports/junit"
               mergeTestResults: true
               testRunTitle: "Jest Unit Tests"
-              failTaskOnFailedTests: true
 
           - task: PublishCodeCoverageResults@1
             displayName: "Publish code coverage from Jest tests"

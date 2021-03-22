@@ -7,6 +7,8 @@
 
 # testing
 /coverage
+/cypress/reports
+/.nyc_output
 
 # production
 /build
@@ -23,5 +25,3 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
-
-junit.xml

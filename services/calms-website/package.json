@@ -16,6 +16,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-uuid": "^1.0.2",
+    "serve": "^11.3.2",
     "styled-components": "^5.2.1",
     "web-vitals": "^1.1.1"
   },
@@ -27,9 +28,13 @@
     "test:ci": "npm test --  --watchAll=false --coverage --reporters=jest-junit --coverageReporters=cobertura",
     "coverage": "nyc report --report-dir ./coverage --reporter=lcov --reporter=cobertura --reporter=text-summary --reporter=html",
     "eject": "react-scripts eject",
-    "cypress": "npm-run-all cypress:open coverage",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cy:verify": "cypress verify",
+    "cy:info": "cypress info",
+    "cy:version": "cypress version",
+    "cy:cache:list": "cypress cache list",
+    "cy:run": "cypress run",
+    "cy:run:record": "cypress run --record",
+    "cy:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@bahmutov/print-env": "^2.1.2",
     "@cypress/code-coverage": "^3.9.2",
     "@cypress/instrument-cra": "^1.4.0",
     "cypress": "^6.8.0",

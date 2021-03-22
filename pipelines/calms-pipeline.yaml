@@ -39,6 +39,7 @@ stages:
             inputs:
               key: "npm | “$(Agent.OS)” | $(Build.SourcesDirectory)/$(websitePath)/package-lock.json"
               path: "$(Build.SourcesDirectory)/$(websitePath)/node_modules"
+              cacheHitVar: "CacheRestored"
 
           - script: |
               npm install

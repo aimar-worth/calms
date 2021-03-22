@@ -4,7 +4,7 @@ variables:
     value: "ubuntu-20.04"
   - name: "tag"
     value: $(Build.BuildId)
-  - name: "website"
+  - name: "websitePath"
     value: "services/calms-website"
   - name: isMaster
     value: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
@@ -27,3 +27,26 @@ trigger:
 
 pool:
   vmImage: $(vmImageName)
+
+stages:
+  - stage: CI
+    displayName: CI Stage
+    jobs:
+      - job: Build_website
+        displayName: Build website
+        steps:
+          - script: |
+              npm install
+            displayName: Install dependencies
+            workingDirectory: $(websitePath)
+
+          - script: |
+              npm run test:ci
+            displayName: Run unit tests
+            workingDirectory: $(websitePath)
+
+          - task: PublishTestResults@2
+            displayName: Publish unit test results
+            inputs:
+              testResultsFormat: "VSTest"
+              testResultsFiles: "$(Build.SourcesDirectory)/junit.xml"

@@ -48,19 +48,17 @@ stages:
 
           - task: CacheBeta@1
             inputs:
-              key: npm | $(Agent.OS) | package-lock.json
+              key: npm | $(Agent.OS) | $(websitePath)/package-lock.json
               path: /home/vsts/.npm
-              restoreKeys: npm | $(Agent.OS) | package-lock.json
+              restoreKeys: npm | $(Agent.OS) | $(websitePath)/package-lock.json
             displayName: Cache NPM packages
-            workingDirectory: $(websitePath)
 
           - task: CacheBeta@1
             inputs:
-              key: cypress | $(Agent.OS) | package-lock.json
+              key: cypress | $(Agent.OS) | $(websitePath)/package-lock.json
               path: /home/vsts/.cache/Cypress
-              restoreKeys: cypress | $(Agent.OS) | package-lock.json
+              restoreKeys: cypress | $(Agent.OS) | $(websitePath)/package-lock.json
             displayName: Cache Cypress binary
-            workingDirectory: $(websitePath)
 
           - script: |
               npm ci

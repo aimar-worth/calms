@@ -45,8 +45,12 @@ stages:
             displayName: Run unit tests
             workingDirectory: $(websitePath)
 
-          - task: PublishTestResults@2
-            displayName: Publish unit test results
-            inputs:
-              testResultsFormat: "VSTest"
-              testResultsFiles: "$(Build.SourcesDirectory)/junit.xml"
+          - script: |
+              ls -la $(Build.SourcesDirectory)
+            displayName: test
+
+          # - task: PublishTestResults@2
+          #   displayName: Publish unit test results
+          #   inputs:
+          #     testResultsFormat: "VSTest"
+          #     testResultsFiles: "$(Build.SourcesDirectory)/junit.xml"

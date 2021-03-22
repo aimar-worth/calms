@@ -93,7 +93,7 @@ stages:
             inputs:
               testResultsFormat: "JUnit"
               testResultsFiles: "*.xml"
-              searchFolder: "$(Build.SourcesDirectory)/cypress/reports/junit"
+              searchFolder: "$(Build.SourcesDirectory)/$(websitePath)/cypress/reports/junit"
               mergeTestResults: true
               testRunTitle: "Jest Unit Tests"
 

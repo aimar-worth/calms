@@ -51,13 +51,29 @@ stages:
               npm run test:ci
             displayName: Run unit tests
             workingDirectory: $(websitePath)
+            continueOnError: true
 
           - script: |
               ls -la $(Build.SourcesDirectory)/$(websitePath)
             displayName: test
 
           - task: PublishTestResults@2
-            displayName: Publish unit test results
+            displayName: "Publish Jest Unit Test Results"
             inputs:
-              testResultsFormat: "VSTest"
               testResultsFiles: "$(Build.SourcesDirectory)/$(websitePath)/junit.xml"
+              mergeTestResults: true
+              testRunTitle: "Jest Unit Tests"
+              failTaskOnFailedTests: true
+
+          - task: PublishCodeCoverageResults@1
+            displayName: "Publish code coverage from Jest tests"
+            inputs:
+              codeCoverageTool: Cobertura
+              summaryFileLocation: "$(Build.SourcesDirectory)/$(websitePath)/coverage/cobertura-coverage.xml"
+              failIfCoverageEmpty: true
+
+          # - task: PublishTestResults@2
+          #   displayName: Publish unit test results
+          #   inputs:
+          #     testResultsFormat: "VSTest"
+          #     testResultsFiles: "$(Build.SourcesDirectory)/$(websitePath)/junit.xml"

@@ -1,4 +1,5 @@
 {
+    "projectId": "calms-mapping",
     "baseUrl": "http://localhost:3000",
     "reporter": "mocha-junit-reporter",
     "reporterOptions": {

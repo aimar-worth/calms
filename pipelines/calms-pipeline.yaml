@@ -52,6 +52,7 @@ stages:
               path: /home/vsts/.npm
               restoreKeys: npm | $(Agent.OS) | package-lock.json
             displayName: Cache NPM packages
+            workingDirectory: $(websitePath)
 
           - task: CacheBeta@1
             inputs:
@@ -59,6 +60,7 @@ stages:
               path: /home/vsts/.cache/Cypress
               restoreKeys: cypress | $(Agent.OS) | package-lock.json
             displayName: Cache Cypress binary
+            workingDirectory: $(websitePath)
 
           - script: |
               npm ci

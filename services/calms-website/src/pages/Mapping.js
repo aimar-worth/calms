@@ -20,9 +20,9 @@ const MappingPage = ({ history }) => {
         setLoading(false)
     }, [history])
 
-    const handleSlider = (name, value) => {
+    const handleSlider = (e, field, newValue) => {
         const currentUser = {...user}
-        currentUser.calms[name] = value
+        currentUser.calms[field] = newValue
         setUser(prevUser => ({
             ...prevUser,
             currentUser
@@ -36,7 +36,7 @@ const MappingPage = ({ history }) => {
     return (
         <div style={{ margin: '32px' }}>
             {loading ? <Loader /> : null}
-            <Header user={user} />
+            <Header user={user} history={history} />
             { user ? <Form handleSubmit={handleSubmit} handleSlider={handleSlider} user={user} /> : null}
         </div>
     )

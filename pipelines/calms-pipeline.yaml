@@ -1,0 +1,29 @@
+variables:
+  - group: "calms-general"
+  - name: "vmImageName"
+    value: "ubuntu-20.04"
+  - name: "tag"
+    value: $(Build.BuildId)
+  - name: "website"
+    value: "services/calms-website"
+  - name: isMaster
+    value: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+  - name: isDevelop
+    value: $[eq(variables['Build.SourceBranch'], 'refs/heads/develop')]
+
+pr:
+  autoCancel: true
+  drafts: false
+
+trigger:
+  branches:
+    include:
+      - develop
+      - master
+  paths:
+    include:
+      - src
+      - deployment
+
+pool:
+  vmImage: $(vmImageName)

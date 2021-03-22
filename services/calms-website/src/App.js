@@ -6,8 +6,6 @@ import EnterNamePage from './pages/EnterName'
 import MappingPage from './pages/Mapping'
 import ResultPage from './pages/Result'
 
-// import Slider from './components/Silder'
-
 function App() {
   return (
     <>

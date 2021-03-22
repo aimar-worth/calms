@@ -1,0 +1,38 @@
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom'
+import App from './App';
+
+window.matchMedia = window.matchMedia || function() {
+  return {
+      matches: false,
+      addListener: function() {},
+      removeListener: function() {}
+  };
+};
+
+// test('loads and displays greeting', () => {
+//   render(<MemoryRouter><App /></MemoryRouter>)
+//   const linkElement = screen.getByText(/Please enter your name/i)
+//   expect(linkElement).toBeInTheDocument();;
+  // fireEvent.click(screen.getByText('Load Greeting'))
+
+  // await waitFor(() => screen.getByRole('heading'))
+
+  // expect(screen.getByRole('heading')).toHaveTextContent('hello there')
+  // expect(screen.getByRole('button')).toHaveAttribute('disabled')
+// })
+
+
+// test('renders learn react link', async done => {
+//   const render = render(<MemoryRouter><App /></MemoryRouter>);
+//   const linkElement = await screen.getByText(/Please enter your name/i);
+
+//   render.debug()
+//   // done()
+
+//   // expect(linkElement).toBeInTheDocument();
+// });
+
+// afterAll(async done => {
+//   done();
+// });

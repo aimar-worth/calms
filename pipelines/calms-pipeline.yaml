@@ -52,9 +52,9 @@ stages:
             displayName: Run unit tests
             workingDirectory: $(websitePath)
 
-          # - script: |
-          #     ls -la $(Build.SourcesDirectory)/$(websitePath)
-          #   displayName: test
+          - script: |
+              ls -la $(Build.SourcesDirectory)/$(websitePath)
+            displayName: test
 
           - task: PublishTestResults@2
             displayName: Publish unit test results
